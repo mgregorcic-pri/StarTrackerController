@@ -1,0 +1,67 @@
+{
+    "files.associations": {
+        "gpio.h": "c",
+        "main.h": "c",
+        "tim.h": "c",
+        "stm32g0xx_ll_usart.h": "c",
+        "stm32g0xx_ll_gpio.h": "c",
+        "stm32g0xx.h": "c",
+        "types.h": "c",
+        "cbuffer.h": "c",
+        "xutility": "c",
+        "core_cm0plus.h": "c",
+        "uart.h": "c",
+        "system.h": "c",
+        "limits": "c",
+        "commander.h": "c",
+        "serial_hw.h": "c",
+        "cstring": "c",
+        "event_queue.h": "c",
+        "stm32g0xx_ll_bus.h": "c",
+        "i2c.h": "c",
+        "can.h": "c",
+        "ptu.h": "c",
+        "state_machine.h": "c",
+        "app_can.h": "c",
+        "sdrive.h": "c"
+    },
+    "activitusbar.views": [
+        {
+            "name": "task.Build",
+            "codicon": "tools",
+            "tooltip": "Build",
+            "priority": 0,
+        },
+        {
+            "name": "task.Build-Clean",
+            "codicon": "refresh",
+            "tooltip": "Rebuild",
+            "priority": 1,
+        },
+        {
+            "name": "task.Flash",
+            "codicon": "arrow-up",
+            "tooltip": "Flash",
+            "priority": 1,
+        },
+
+    ],
+    "cortex-debug.registerUseNaturalFormat": false,
+    // The number of spaces a tab is equal to. This setting is overridden
+    // based on the file contents when `editor.detectIndentation` is true.
+    "editor.tabSize": 4,
+
+    // Insert spaces when pressing Tab. This setting is overriden
+    // based on the file contents when `editor.detectIndentation` is true.
+    "editor.insertSpaces": true,
+
+    // When opening a file, `editor.tabSize` and `editor.insertSpaces`
+    // will be detected based on the file contents. Set to false to keep
+    // the values you've explicitly set, above.
+    "editor.detectIndentation": false,
+    "stm32-for-vscode.openOCDPath": "c:\\Users\\matic\\AppData\\Roaming\\Code\\User\\globalStorage\\bmd.stm32-for-vscode\\@xpack-dev-tools\\openocd\\0.12.0-6.1\\.content\\bin\\openocd.EXE",
+    "stm32-for-vscode.makePath": false,
+    "cortex-debug.armToolchainPath": "C:\\ST\\STM32CubeCLT_1.18.0\\GNU-tools-for-STM32\\bin",
+    "cortex-debug.openocdPath": "c:\\Users\\matic\\AppData\\Roaming\\Code\\User\\globalStorage\\bmd.stm32-for-vscode\\@xpack-dev-tools\\openocd\\0.12.0-6.1\\.content\\bin\\openocd.EXE",
+    "cortex-debug.variableUseNaturalFormat": false,
+}

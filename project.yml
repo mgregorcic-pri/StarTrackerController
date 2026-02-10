@@ -1,0 +1,139 @@
+---
+
+:project:
+  :use_exceptions: FALSE
+  :use_test_preprocessor: :none
+  :use_auxiliary_dependencies: TRUE
+  :build_root: build
+  :release_build: TRUE
+  :test_file_prefix: test_
+  :default_tasks:
+    - test:all
+
+:release_build:
+  :output: TTC.elf
+  :use_assembly: TRUE
+
+:environment:
+
+:extension:
+  :executable: .elf
+  :assembly: .s
+
+:paths:
+  :test:
+    - +:test/**
+    - -:test/support
+  :source:
+    - source/**
+    - Core/**
+    - Drivers/STM32C0xx_HAL_Driver/**
+  :include:
+    - source/**
+    - Core/**
+    - Drivers/CMSIS/Include/
+    - Drivers/CMSIS/Device/ST/STM32C0xx/Include/**
+    - Drivers/STM32C0xx_HAL_Driver/**
+    - scripts/**
+  :support:
+    - test/support
+  :libraries: []
+
+:files:
+  :assembly:
+    - startup_stm32c092xx.s
+  :source:
+
+  :include: 
+
+  :test: []
+
+:defines:
+  # in order to add common defines:
+  #  1) remove the trailing [] from the :common: section
+  #  2) add entries to the :common: section (e.g. :test: has TEST defined)
+  :common: &common_defines []
+  :test:
+    - TEST
+  :test_preprocess:
+    - TEST
+  :release:
+    - USE_NUCLEO_64 
+    - USE_HAL_DRIVER
+    - STM32C092xx
+
+:cmock:
+  :mock_prefix: mock_
+  :when_no_prototypes: :warn
+  :enforce_strict_ordering: TRUE
+  :plugins:
+    - :ignore
+    - :callback
+  :treat_as:
+    uint8:    HEX8
+    uint16:   HEX16
+    uint32:   UINT32
+    int8:     INT8
+    bool:     UINT8
+
+# Add -gcov to the plugins list to make sure of the gcov plugin
+# You will need to have gcov and gcovr both installed to make it work.
+# For more information on these options, see docs in plugins/gcov
+:gcov:
+  :reports:
+    - HtmlDetailed
+  :gcovr:
+    :html_medium_threshold: 75
+    :html_high_threshold: 90
+
+:tools:
+  :release_compiler:
+     :executable: arm-none-eabi-gcc              #exists in system search path
+     :name: 'arm compiler'
+     :arguments:
+        - -I"$": COLLECTION_PATHS_INCLUDE               #expands to -I search paths
+        - -D${6}
+        - -mcpu=cortex-m0plus -mthumb
+        - -Wall -fdata-sections -ffunction-sections
+        - -Wno-declaration-missing-parameter-type
+        - -g -O0 -gdwarf-2
+        - -c ${1}                       #source code input file (Ruby method call param list sub)
+        - -o ${2}
+  :release_assembler:
+     :executable: arm-none-eabi-gcc          #exists in system search path
+     :name: 'arm assembler'
+     :arguments:
+        - -x assembler-with-cpp
+        - -mcpu=cortex-m0plus -mthumb
+        - -Wall -fdata-sections -ffunction-sections
+        - -g -gdwarf-2
+        - -O0
+        - -c ${1}                       #source code input file (Ruby method call param list sub)
+        - -o ${2}
+  :release_linker:
+     :executable: arm-none-eabi-gcc   #absolute file path
+     :name: 'arm linker'
+     :arguments:
+        - -mcpu=cortex-m0plus -mthumb
+        - -specs=nosys.specs
+        - -lc -lm 
+        - -Wl,-Map=build/release/TTC.map,--cref -Wl,--gc-sections
+        - -T STM32C092XX_FLASH.ld
+        - ${1}               #list of object files to link (Ruby method call param list sub)
+        - -o ${2}           #executable file output (Ruby method call param list sub)
+
+# LIBRARIES
+# These libraries are automatically injected into the build process. Those specified as
+# common will be used in all types of builds. Otherwise, libraries can be injected in just
+# tests or releases. These options are MERGED with the options in supplemental yaml files.
+:libraries:
+  :placement: :end
+  :flag: "-l${1}"
+  :path_flag: "-L ${1}"
+  :system: []    # for example, you might list 'm' to grab the math library
+  :test: []
+  :release: []
+
+:plugins:
+  :load_paths: []
+...

@@ -1,0 +1,25 @@
+{
+  "configurations": [
+    {
+      "name": "STM32",
+      "includePath": [
+        "../../cToolbox",
+        "Core/Inc",
+        "Drivers/BSP/STM32C0xx_Nucleo",
+        "Drivers/CMSIS/Device/ST/STM32C0xx/Include",
+        "Drivers/CMSIS/Include",
+        "Drivers/STM32C0xx_HAL_Driver/Inc",
+        "Drivers/STM32C0xx_HAL_Driver/Inc/Legacy",
+        "source"
+      ],
+      "defines": [
+        "CPU_TYPE_32",
+        "STM32C092xx",
+        "USE_HAL_DRIVER",
+        "USE_NUCLEO_64"
+      ],
+      "compilerPath": "C:\\ST\\STM32CubeCLT_1.18.0\\GNU-tools-for-STM32\\bin\\arm-none-eabi-gcc.EXE"
+    }
+  ],
+  "version": 4
+}
